@@ -9,7 +9,7 @@ import { MdPause} from "react-icons/md"
 const AudioPlayer = () => {
   // state
   const [isPlaying, setIsPlaying] = useState(false);
-  const [duration, setDuration] = useState(0);
+  const [ duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
 
   // references
@@ -65,13 +65,20 @@ const AudioPlayer = () => {
   }
 
   const forwardThirty = () => {
+
     progressBar.current.value = Number(progressBar.current.value) + 30;
+
+    changeRange();
+  }
+
+  const timeTravel = (newTime) => {
+    progressBar.current.value = newTime;
     changeRange();
   }
 
   return (
     <div className={styles.audioPlayer}>
-      <audio ref={audioPlayer} src="https://cdn.simplecast.com/audio/cae8b0eb-d9a9-480d-a652-0defcbe047f4/episodes/af52a99b-88c0-4638-b120-d46e142d06d3/audio/500344fb-2e2b-48af-be86-af6ac341a6da/default_tc.mp3" preload="metadata"></audio>
+      <audio ref={audioPlayer} src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="metadata"></audio>
       <button className={styles.forwardBackward} onClick={backThirty}>< MdReplay30 /> </button>
       <button onClick={togglePlayPause} className={styles.playPause}>
         {isPlaying ? <MdPause /> : <MdPlayArrow />}
